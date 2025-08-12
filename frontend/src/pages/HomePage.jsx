@@ -53,9 +53,23 @@ const HomePage = () => {
             <button
               className="scroll-down-circle"
               onClick={() => {
-                const nextSection = document.querySelector('.homepage-content')
+                const nextSection = document.querySelector('.bonuses-section')
                 if (nextSection) {
-                  nextSection.scrollIntoView({ behavior: 'smooth' })
+                  const targetY = nextSection.getBoundingClientRect().top + window.scrollY
+                  const startY = window.scrollY
+                  const distance = targetY - startY
+                  const duration = 800 // ms, øk for enda saktere
+                  let start
+
+                  function step(timestamp) {
+                    if (!start) start = timestamp
+                    const progress = Math.min((timestamp - start) / duration, 1)
+                    window.scrollTo(0, startY + distance * progress)
+                    if (progress < 1) {
+                      window.requestAnimationFrame(step)
+                    }
+                  }
+                  window.requestAnimationFrame(step)
                 }
               }}
               aria-label="Scroll down"
