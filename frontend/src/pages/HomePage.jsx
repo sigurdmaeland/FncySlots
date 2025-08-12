@@ -1,9 +1,13 @@
-import React, { useEffect, useRef } from 'react'
-import './css/homePage.css'
+import React, { useEffect, useRef, useState } from 'react'
+import './css/homepage/hero.css'
+import './css/homepage/bonuses.css'
+import './css/homepage/social.css'
 import { FaYoutube, FaTwitter, FaDiscord } from 'react-icons/fa'
 
 const HomePage = () => {
   const cardsRef = useRef([])
+  const [copied, setCopied] = useState(false)
+  const [showCode, setShowCode] = useState(true)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,6 +72,82 @@ const HomePage = () => {
                 <path d="M10 14L16 20L22 14" stroke="#ff9800" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Bonuses-section mellom video og socials */}
+      <section className="bonuses-section">
+        <div className="bonuses-container">
+          <h2 className="bonuses-title">BONUSES</h2>
+          <div className="bonuses-subtitle">ENJOY EXCLUSIVE BONUSES</div>
+          <div className="featured-bonus">
+            <div className="featured-header">
+              <span className="featured-star">★</span>
+              <span className="featured-label">Featured</span>
+              <span className="featured-star">★</span>
+            </div>
+            <div className="bonus-card">
+              <img src="/rain.gg-logo.png" alt="RainGG" className="bonus-logo" />
+              <div className="bonus-info">
+                <div className="bonus-site">RAIN.GG</div>
+                <div className="bonus-type">Casino</div>
+              </div>
+              <div className="bonus-rewards">
+                <span className="bonus-rewards-title">REWARDS</span>
+                <div className="bonus-rewards-main">
+                  <span className="bonus-perk">5% DEPOSIT BONUS</span>
+                  <span className="bonus-cases">3 FREE CASES</span>
+                </div>
+              </div>
+              <div className="bonus-code-row" style={{ width: "100%", justifyContent: "center" }}>
+                <span className="bonus-code-label">Use Code:</span>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%" }}>
+                  {showCode ? (
+                    <button
+                      className="bonus-code"
+                      onClick={() => {
+                        navigator.clipboard.writeText('FNCY')
+                        setShowCode(false)
+                        setTimeout(() => setShowCode(true), 2000)
+                      }}
+                      style={{
+                        cursor: 'pointer',
+                        border: 'none',
+                        background: 'none',
+                        margin: "0 auto",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "6px"
+                      }}
+                      aria-label="Copy code"
+                    >
+                      FNCY
+                      {/* Heroicons Copy SVG */}
+                      <svg xmlns="http://www.w3.org/2000/svg" style={{marginLeft: "6px"}} width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#ffe082" strokeWidth="1.8">
+                        <rect x="9" y="9" width="10" height="10" rx="2" stroke="#ffe082" strokeWidth="1.8" fill="none"/>
+                        <rect x="5" y="5" width="10" height="10" rx="2" stroke="#bdbdbd" strokeWidth="1.2" fill="none"/>
+                      </svg>
+                    </button>
+                  ) : (
+                    <span style={{
+                      margin: "0 auto",
+                      color: "#ffe082",
+                      fontWeight: 700,
+                      fontSize: "0.98rem",
+                      textAlign: "center",
+                      width: "100%"
+                    }}>
+                      Copied!
+                    </span>
+                  )}
+                </div>
+              </div>
+              <button className="bonus-claim-btn">Claim Bonus</button>
+              <div className="bonus-note">
+                Use of the code will automatically enter you into Fncy slot's leaderboard when wagering on their site.
+              </div>
+            </div>
           </div>
         </div>
       </section>
