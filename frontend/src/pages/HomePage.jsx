@@ -1,13 +1,34 @@
 import React, { useEffect, useRef, useState } from 'react'
 import './css/homepage/hero.css'
 import './css/homepage/bonuses.css'
+import './css/homepage/faq.css'
 import './css/homepage/social.css'
 import { FaYoutube, FaTwitter, FaDiscord } from 'react-icons/fa'
+
+const faqQuestions = [
+  {
+    q: "HOW DO I EARN POINTS?",
+    a: "You earn points by wagering on partnered casinos using the FNCY code. The more you wager, the more points you collect!"
+  },
+  {
+    q: "HOW TO SPEND POINTS?",
+    a: "Points can be spent on rewards, giveaways, or exclusive Fncy events. Check the rewards page for current offers!"
+  },
+  {
+    q: "HOW TO PARTICIPATE IN THE LEADERBOARD?",
+    a: "Use the FNCY code when wagering. Your points will automatically be tracked and added to the leaderboard."
+  },
+  {
+    q: "LOST POINTS AFTER CHANGING YOUR KICK USERNAME?",
+    a: "If you changed your Kick username and lost points, contact support with your old and new username for help."
+  }
+]
 
 const HomePage = () => {
   const cardsRef = useRef([])
   const [copied, setCopied] = useState(false)
   const [showCode, setShowCode] = useState(true)
+  const [openFaq, setOpenFaq] = useState(null)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -162,6 +183,29 @@ const HomePage = () => {
                 Use of the code will automatically enter you into Fncy slot's leaderboard when wagering on their site.
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ-section */}
+      <section className="faq-section">
+        <div className="faq-inner">
+          <h2 className="faq-title">FAQ</h2>
+          <div className="faq-list">
+            {faqQuestions.map((item, idx) => (
+              <details
+                className="faq-item"
+                key={item.q}
+                open={openFaq === idx}
+                onClick={e => {
+                  e.preventDefault()
+                  setOpenFaq(openFaq === idx ? null : idx)
+                }}
+              >
+                <summary>{item.q}</summary>
+                <div className="faq-answer">{item.a}</div>
+              </details>
+            ))}
           </div>
         </div>
       </section>
