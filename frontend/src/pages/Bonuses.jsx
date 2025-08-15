@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import './css/bonuses2.css'
-import './css/promocard.css'
+import './css/bonuses/bonuses2.css'
+import './css/bonuses/promocard.css'
 
 const Bonuses = () => {
   const [showCode, setShowCode] = useState(true)
