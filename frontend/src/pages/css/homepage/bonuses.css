@@ -100,10 +100,15 @@
 }
 
 .bonus-logo {
-  width: 200px;
-  height: 80px;
+  width: 95px;
+  height: 95px;
+  object-fit: cover;
+  border-radius: 50%;
+  background: #232325;
   margin-bottom: 18px;
-  filter: brightness(1.2) drop-shadow(0 0 8px #ffb300);
+  filter: brightness(1.2) drop-shadow(0 0 17px #b36352);
+  display: block;
+  box-shadow: 0 2px 16px 0 rgba(255,224,130,0.10);
 }
 
 .bonus-info {
