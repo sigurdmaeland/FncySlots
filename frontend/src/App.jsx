@@ -5,11 +5,13 @@ import Leaderboards from './pages/Leaderboards'
 import Store from './pages/Store'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import ScrollToTop from './components/ScrollToTop'
 
 function App() {
   return (
     <>
       <Navbar />
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/bonuses" element={<Bonuses />} />

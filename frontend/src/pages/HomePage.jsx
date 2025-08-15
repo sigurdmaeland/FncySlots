@@ -123,9 +123,9 @@ const HomePage = () => {
               <span className="featured-star">★</span>
             </div>
             <div className="bonus-card">
-              <img src="/rain.gg-logo.png" alt="RainGG" className="bonus-logo" />
+              <img src="/r.png" alt="500casino" className="bonus-logo" />
               <div className="bonus-info">
-                <div className="bonus-site">RAIN.GG</div>
+                <div className="bonus-site">500 Casino</div>
                 <div className="bonus-type">Casino</div>
               </div>
               <div className="bonus-rewards">
