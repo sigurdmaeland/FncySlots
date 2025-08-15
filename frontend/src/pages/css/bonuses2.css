@@ -275,8 +275,15 @@
     font-size: 3.2rem;
   }
   .bonus-logo {
-    width: 160px;
-    height: auto;
+     width: 95px;
+      height: 95px;
+      object-fit: cover;
+      border-radius: 50%;
+      background: #232325;
+      margin-bottom: 18px;
+      filter: brightness(1.2) drop-shadow(0 0 17px #b36352);
+      display: block;
+      box-shadow: 0 2px 16px 0 rgba(255,224,130,0.10);
   }
   .bonus-card {
     max-width: 280px;
@@ -302,8 +309,15 @@
     max-width: 270px;
   }
   .bonus-logo {
-    width: 140px;
-    margin-bottom: 14px;
+     width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 50%;
+  background: #232325;
+  margin-bottom: 18px;
+  filter: brightness(1.2) drop-shadow(0 0 17px #b36352);
+  display: block;
+  box-shadow: 0 2px 16px 0 rgba(255,224,130,0.10);
   }
   .bonus-perk,
   .bonus-cases {
@@ -327,8 +341,15 @@
     gap: 6px;
   }
   .bonus-logo {
-    width: 120px;
-    height: auto;
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 50%;
+    background: #232325;
+    margin-bottom: 18px;
+    filter: brightness(1.2) drop-shadow(0 0 17px #b36352);
+    display: block;
+    box-shadow: 0 2px 16px 0 rgba(255,224,130,0.10);
   }
   .bonus-code {
     font-size: 0.95rem;
