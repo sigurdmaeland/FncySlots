@@ -3,7 +3,7 @@ import './css/store/store.css'
 
 const storeItems = [
 	{
-		img: '/voucher.png',
+		img: '/ak47.png', 
 		title: '$10,000 BONUS BUY SPLIT',
 		type: 'CASINO',
 		desc: 'Prize can be redeemed on stream after confirmation of purchase',
