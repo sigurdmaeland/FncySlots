@@ -222,7 +222,7 @@
   }
   .navbar-mobile-menu .navbar-item {
     flex: 1 1 0;
-    color: #d34c79;
+    color: #52303c;
     font-size: 20px;
     padding: 28px 24px; /* Mer høyde på knappene */
     text-decoration: none;
@@ -242,7 +242,7 @@
     border-bottom: none;
   }
   .navbar-mobile-menu .navbar-item:hover {
-    background: #d34c79;
+    background: #52303c;
   }
 
   .login-button {
@@ -263,7 +263,7 @@
   .navbar-item:hover {
     box-shadow: none !important;
     background: none !important;
-    color: #d34c79; !important;
+    color: #52303c !important;
   }
 }
 
