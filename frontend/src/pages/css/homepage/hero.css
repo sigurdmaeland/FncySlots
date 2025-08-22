@@ -120,14 +120,17 @@
 }
 @media (max-width: 600px) {
   
-  .hero-content { margin-top: -100px; height: 100vh; min-height: 100vh; padding: 0 0 12px 0; }
+  .hero-content { margin-top: -115px; height: 100vh; min-height: 100vh; padding: 0 0 12px 0; }
   .hero-title {
-    font-size: 1.7rem; margin-bottom: -10px; letter-spacing: 1.5px; text-align: center;
+    font-size: 1.4rem; margin-bottom: -10px; letter-spacing: 1.1px; text-align: center;
   }
    .hero-subtitle {
     width: 80vw; max-width: 360px; min-width: 160px; padding: 35px 0;
-    font-size: 1.05rem; letter-spacing: 1.2px;
+    font-size: 1.05rem; letter-spacing: 1.2px; margin-top: 20px; 
   }
+
+  
+
   .hero-btn {
     width: 80vw; max-width: 360px; min-width: 160px; padding: 12px 0;
     font-size: 1.05rem; letter-spacing: 1.2px;
