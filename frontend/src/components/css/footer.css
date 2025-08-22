@@ -55,8 +55,8 @@ html, body {
 
 .footer-menu-header { 
   font-size: 13px; 
-  font-weight: 600; 
-  color: #ffe9b8; 
+  font-weight: 900; 
+  color: #da2a0f; 
   margin: 4px 0; 
   letter-spacing: 0.5px; 
   text-transform: uppercase; 
@@ -107,7 +107,7 @@ html, body {
 }
 
 .footer-socials a:hover { 
-  background: #ffe9b8;
+  background: #ce563e;
   color: #18181b;
   box-shadow: 0 0 16px 4px #fff, 0 0 12px 2px #ffe9b8;
 }
@@ -182,8 +182,8 @@ html, body {
 
 .footer-information-header {
   font-size: 13px;
-  font-weight: 600;
-  color: #ffe9b8;
+  font-weight: 900;
+  color: #da2a0f;
   margin-bottom: 4px;
   letter-spacing: 0.5px;
   text-transform: uppercase;
