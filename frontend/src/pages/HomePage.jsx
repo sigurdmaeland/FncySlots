@@ -59,7 +59,7 @@ const HomePage = () => {
               </span>
             </a>
           </div>
-          <div className="hero-earn-section">
+          <div className="hero-earn-section desktop-only">
             <span className="hero-earn-text">
               START EARNING <span className="hero-highlight">REWARDS</span>
             </span>
