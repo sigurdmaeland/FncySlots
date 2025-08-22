@@ -119,7 +119,7 @@
   .scroll-down-svg { width: 28px; height: 28px; }
 }
 @media (max-width: 600px) {
-  .hero-content { top: 15px; height: 100vh; min-height: 100vh; padding: 0 0 12px 0; }
+  .hero-content { height: 100vh; min-height: 100vh; padding: 0 0 12px 0; }
   .hero-logo { width: 58vw; max-width: 230px; min-width: 160px; margin-top: 4px; margin-bottom: 10px; border-radius: 10px; }
   .scroll-down-circle, .hero-earn-text {
   display: none;
