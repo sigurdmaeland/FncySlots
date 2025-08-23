@@ -39,8 +39,8 @@ html, body {
 }
 
 .footer-logo { 
-  height: 135px; 
-  margin-left: 0; /* Fjernet negativ margin */
+  height: 135px;
+  margin-top: 6px;
   border-radius: 50%; 
 }
 
@@ -160,11 +160,10 @@ html, body {
 
 
 .footer-copyright { 
-  font-size: 13px; 
-  color:#a72431;
-  margin: 22px auto 37px;
+  font-size: 11.7px; 
+  color:#ffffff;
+  margin-left: 130px;
   text-align: left; 
-  max-width: 1200px; 
   padding: 0 15px; 
   box-sizing: border-box;
   margin-top: -18px; /* Justering for å unngå overlap */
