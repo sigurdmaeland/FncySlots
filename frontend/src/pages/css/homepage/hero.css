@@ -96,8 +96,22 @@
   .hero-logo { width: 200px; margin-bottom: 26px; border-radius: 16px; }
 }
 @media (max-width: 900px) {
-  .homepage-video-section { width: 100vw; min-height: 94vh; margin-top: 56px; }
-  .homepage-top-video { width: 100vw; height: 100vh; min-height: 100vh; max-height: 100vh; }
+  .homepage-video-section { 
+    width: 100vw; 
+    min-height: 100vh; 
+    height: 100vh;
+    margin-top: 56px; 
+    overflow: hidden;
+  }
+  .homepage-top-video { 
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    width: 100vw; 
+    height: 100vh; 
+    object-fit: cover;
+    z-index: 0;
+  }
   .hero-content {
     position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; min-height: 100vh;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -119,6 +133,7 @@
   .scroll-down-svg { width: 28px; height: 28px; }
 }
 @media (max-width: 600px) {
+  
   
   .hero-content { margin-top: -115px; height: 100vh; min-height: 100vh; padding: 0 0 12px 0; }
   .hero-title {
