@@ -8,7 +8,11 @@ const Footer = () => {
       <div className="footer-row">
         <div className="footer-logo-wrap">
           <img src="/logo7.png" alt="Logo" className="footer-logo" />
+          <div className="footer-copyright">
+            © COPYRIGHT 2025 FNCY SLOTS
+          </div>
         </div>
+
         <div className="footer-menu">
           <div className="footer-menu-header">Menu</div>
           <a href="/" className="footer-link">Home</a>
@@ -18,9 +22,9 @@ const Footer = () => {
         </div>
 
         <div className='footer-information'>
-        <div className="footer-information-header">Information</div>
-        <a href="/terms_and_conditions" className="footer-link-2">Terms & Conditions</a>
-        <a href="/privacy_policy" className="footer-link-2">Privacy Policy</a>
+          <div className="footer-information-header">Information</div>
+          <a href="/terms_and_conditions" className="footer-link-2">Terms & Conditions</a>
+          <a href="/privacy_policy" className="footer-link-2">Privacy Policy</a>
         </div>
 
         <div className="footer-socials">
@@ -29,9 +33,7 @@ const Footer = () => {
           <a href="https://discord.com" target="_blank" rel="noopener noreferrer"><FaDiscord /></a>
         </div>
       </div>
-      <div className="footer-copyright">
-        © COPYRIGHT 2025 FNCY SLOTS
-      </div>
+
       <hr className="footer-divider" />
       <div className="footer-warning">
         <span className="footer-18">18+</span>

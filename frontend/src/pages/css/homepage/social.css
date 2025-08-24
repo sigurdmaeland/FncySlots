@@ -54,7 +54,7 @@
 }
 .social-card-btn:hover { background: #fff; color: #e63926; transform: scale(1.04); }
 .socials-footer {
-  margin-top: 95px; font-size: 1.08rem; color: #bdbdbd; text-align: center; letter-spacing: 0.5px;
+  margin-top: 95px; font-size: 1.2rem; color: #bdbdbd; text-align: center; letter-spacing: 0.5px;
 }
 .socials-footer .enjoy {
   color: #e63926; font-weight: 700;
@@ -74,5 +74,5 @@
   .social-card.visible { opacity: 1; transform: scale(1) translateX(0); }
   .social-icon { font-size: 36px; padding: 10px 12px; }
   .social-card-btn { font-size: 1rem; padding: 8px 18px; }
-  .socials-footer { margin-top: 85px; font-size: 0.75rem; }
+  .socials-footer { margin-top: 85px; font-size: 0.87rem; }
 }
