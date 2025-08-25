@@ -3,14 +3,15 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: vh;               /* Mindre høyde */
+  height: 64px;               /* fast, gyldig høyde */
   background: #000000;
   color: #c4bcc1;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 64px;            /* Økt innrykk fra venstre og høyre */
-  z-index: 1000;
+  z-index: 99999;             /* høyere enn dekorative elementer for å unngå å bli overskredet */
+  pointer-events: auto;       /* sørg for at navbaren kan motta klikk */
   box-sizing: border-box;
   border-bottom: 0.75px solid #fff; /* Hvit strek nederst */
 }

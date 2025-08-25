@@ -9,10 +9,6 @@ const Leaderboards = () => {
     minutes: 9,
     seconds: 17
   })
-  
-  // State for search functionality
-  const [searchTerm, setSearchTerm] = useState('')
-  const [filteredLeaderboard, setFilteredLeaderboard] = useState([])
 
   // Mock data for top players (would be replaced with API call)
   const topPlayers = [
@@ -114,7 +110,6 @@ const Leaderboards = () => {
       // Would update state with fetched data here
       // setTopPlayers(data.topPlayers);
       // setLeaderboardData(data.leaderboard);
-      setFilteredLeaderboard(data.leaderboard);
     }
     
     getLeaderboardData();
@@ -124,25 +119,9 @@ const Leaderboards = () => {
     
     return () => clearInterval(refreshInterval);
   }, []);
-  
-  // Handle search functionality
-  useEffect(() => {
-    if (searchTerm.trim() === '') {
-      setFilteredLeaderboard(leaderboardData);
-    } else {
-      const filtered = leaderboardData.filter(player => 
-        player.username.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-      setFilteredLeaderboard(filtered);
-    }
-  }, [searchTerm]);
 
   return (
-
-
     <div className="leaderboard-container">
-       <h2 className="leaderboard-title">LEADERBOARD</h2>
-          <div className="leaderboard-subtitle">WAGER WITH CODE FNCY AND WIN PRIZES</div>
       {/* Top three players section */}
       <div className="top-players">
         {/* Second place */}
@@ -154,28 +133,20 @@ const Leaderboards = () => {
           <div className="player-name">{topPlayers[1].username}</div>
           
           <div className="stats-label">Total Wagered</div>
-          <div className="stats-value">
-            {topPlayers[1].totalWagered.toLocaleString('en-US', { minimumFractionDigits: 2 })}
-            <img src="/coin.svg" alt="Coin" className="coin-icon" />
-          </div>
+          <div className="stats-value">{topPlayers[1].totalWagered.toLocaleString('en-US', { minimumFractionDigits: 2 })} 🪙</div>
           
           <div className="divider"></div>
           
           <div className="reward-section">
             <span className="trophy-icon">🏆</span>
             <div className="stats-label">Reward</div>
-            <div className="stats-value">
-              {topPlayers[1].reward.toLocaleString('en-US')}
-              <img src="/coin.svg" alt="Coin" className="coin-icon" />
-            </div>
+            <div className="stats-value">{topPlayers[1].reward.toLocaleString('en-US')} 🪙</div>
           </div>
         </div>
         
         {/* First place */}
         <div className="top-player-card first">
-          <div className="crown">
-            <span className="crown-emoji" role="img" aria-label="Crown">👑</span>
-          </div>
+          <span className="crown">👑</span>
           <div className="player-avatar-container">
             <img src={topPlayers[0].avatar} alt="Player avatar" className="player-avatar" />
             <div className="rank-badge">#1</div>
@@ -183,20 +154,14 @@ const Leaderboards = () => {
           <div className="player-name">{topPlayers[0].username}</div>
           
           <div className="stats-label">Total Wagered</div>
-          <div className="stats-value">
-            {topPlayers[0].totalWagered.toLocaleString('en-US', { minimumFractionDigits: 2 })}
-            <img src="/coin.svg" alt="Coin" className="coin-icon" />
-          </div>
+          <div className="stats-value">{topPlayers[0].totalWagered.toLocaleString('en-US', { minimumFractionDigits: 2 })} 🪙</div>
           
           <div className="divider"></div>
           
           <div className="reward-section">
             <span className="trophy-icon">🏆</span>
             <div className="stats-label">Reward</div>
-            <div className="stats-value">
-              {topPlayers[0].reward.toLocaleString('en-US')}
-              <img src="/coin.svg" alt="Coin" className="coin-icon" />
-            </div>
+            <div className="stats-value">{topPlayers[0].reward.toLocaleString('en-US')} 🪙</div>
           </div>
         </div>
         
@@ -209,20 +174,14 @@ const Leaderboards = () => {
           <div className="player-name">{topPlayers[2].username}</div>
           
           <div className="stats-label">Total Wagered</div>
-          <div className="stats-value">
-            {topPlayers[2].totalWagered.toLocaleString('en-US', { minimumFractionDigits: 2 })}
-            <img src="/coin.svg" alt="Coin" className="coin-icon" />
-          </div>
+          <div className="stats-value">{topPlayers[2].totalWagered.toLocaleString('en-US', { minimumFractionDigits: 2 })} 🪙</div>
           
           <div className="divider"></div>
           
           <div className="reward-section">
             <span className="trophy-icon">🏆</span>
             <div className="stats-label">Reward</div>
-            <div className="stats-value">
-              {topPlayers[2].reward.toLocaleString('en-US')}
-              <img src="/coin.svg" alt="Coin" className="coin-icon" />
-            </div>
+            <div className="stats-value">{topPlayers[2].reward.toLocaleString('en-US')} 🪙</div>
           </div>
         </div>
       </div>
@@ -253,8 +212,6 @@ const Leaderboards = () => {
           type="text" 
           className="search-box" 
           placeholder="Search by username..." 
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
         />
         
         <table className="leaderboard-table">
@@ -262,45 +219,37 @@ const Leaderboards = () => {
             <tr>
               <th>USER</th>
               <th></th>
-              <th className="header-right">WAGERED</th>
-              <th className="header-right">PRIZE</th>
+              <th>WAGERED</th>
+              <th>PRIZE</th>
             </tr>
           </thead>
           <tbody>
-            {filteredLeaderboard.length > 0 ? (
-              filteredLeaderboard.map(player => (
-                <tr key={player.rank}>
-                  <td className="rank-cell">
-                    <div className="rank-display">
-                      <img src="/coin.svg" alt="Coin icon" className="trophy-small" />
-                      <span>{player.rank}</span>
-                    </div>
-                  </td>
-                  <td className="user-cell">
-                    <div className="player-cell">
-                      <img src={player.avatar} alt={`${player.username}'s avatar`} className="player-avatar" />
-                      <span className="username">{player.username}</span>
-                    </div>
-                  </td>
-                  <td className="value-cell">
-                    <span className="wagered-amount">
-                      ${player.wagered.toLocaleString('en-US', { minimumFractionDigits: 2 })}
-                    </span>
-                  </td>
-                  <td className="value-cell">
-                    <span className="prize-amount">
-                      ${player.prize.toLocaleString('en-US', { minimumFractionDigits: 2 })}
-                    </span>
-                  </td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="4" className="no-results">
-                  No players found matching your search.
+            {leaderboardData.map(player => (
+              <tr key={player.rank}>
+                <td>
+                  <div className="rank-display">
+                    <span className="rank-trophy">🏆</span>
+                    <span>{player.rank}</span>
+                  </div>
+                </td>
+                <td>
+                  <div className="player-cell">
+                    <img src={player.avatar} alt={`${player.username}'s avatar`} className="player-avatar" style={{ width: '40px', height: '40px' }} />
+                    <span>{player.username}</span>
+                  </div>
+                </td>
+                <td>
+                  <div className="wagered-value">
+                    {player.wagered.toLocaleString('en-US', { minimumFractionDigits: 2 })} 🪙
+                  </div>
+                </td>
+                <td>
+                  <div className="prize-value">
+                    {player.prize.toLocaleString('en-US', { minimumFractionDigits: 2 })} 🪙
+                  </div>
                 </td>
               </tr>
-            )}
+            ))}
           </tbody>
         </table>
       </div>

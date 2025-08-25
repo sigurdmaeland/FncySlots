@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import './css/homepage/hero.css'
+import './css/leaderboards/leaderboards.css'
 import './css/bonuses/bonuses2.css'
 import './css/homepage/social.css'
 import { FaYoutube, FaTwitter, FaDiscord } from 'react-icons/fa'
@@ -26,6 +27,141 @@ const HomePage = () => {
     handleScroll()
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+
+    const [timeLeft, setTimeLeft] = useState({
+      days: 0,
+      hours: 9,
+      minutes: 9,
+      seconds: 17
+    })
+    
+    // State for search functionality
+    const [searchTerm, setSearchTerm] = useState('')
+    const [filteredLeaderboard, setFilteredLeaderboard] = useState([])
+  
+    // Mock data for top players (would be replaced with API call)
+    const topPlayers = [
+      {
+        id: 1,
+        rank: 1,
+        username: 'G****',
+        avatar: '/logo.png', // Replace with actual user avatar
+        totalWagered: 33530.24,
+        reward: 4300
+      },
+      {
+        id: 2,
+        rank: 2,
+        username: 'S****',
+        avatar: '/logo.png', // Replace with actual user avatar
+        totalWagered: 20299.94,
+        reward: 2200
+      },
+      {
+        id: 3,
+        rank: 3,
+        username: 't****',
+        avatar: '/logo.png', // Replace with actual user avatar
+        totalWagered: 12082.47,
+        reward: 1500
+      }
+    ]
+  
+    // Mock data for leaderboard (would be replaced with API call)
+    const leaderboardData = [
+      { rank: 4, username: 'e****', avatar: '/logo.png', wagered: 8970.42, prize: 1000.00 },
+      { rank: 5, username: 'S****', avatar: '/logo.png', wagered: 8437.44, prize: 750.00 },
+      { rank: 6, username: 'K****', avatar: '/logo.png', wagered: 7393.47, prize: 550.00 },
+      { rank: 7, username: 'a****', avatar: '/logo.png', wagered: 7306.69, prize: 400.00 },
+      { rank: 8, username: 'Z****', avatar: '/logo.png', wagered: 6398.03, prize: 350.00 },
+      { rank: 9, username: 'd****', avatar: '/logo.png', wagered: 6375.57, prize: 300.00 },
+      { rank: 10, username: 'P****', avatar: '/logo.png', wagered: 6000.00, prize: 250.00 },
+      { rank: 11, username: 'L****', avatar: '/logo.png', wagered: 5800.00, prize: 200.00 },
+      { rank: 12, username: 'R****', avatar: '/logo.png', wagered: 5600.00, prize: 150.00 }
+    ]
+  
+    // Countdown timer effect
+    useEffect(() => {
+      const timer = setInterval(() => {
+        setTimeLeft(prev => {
+          if (prev.seconds > 0) {
+            return { ...prev, seconds: prev.seconds - 1 }
+          } else if (prev.minutes > 0) {
+            return { ...prev, minutes: prev.minutes - 1, seconds: 59 }
+          } else if (prev.hours > 0) {
+            return { ...prev, hours: prev.hours - 1, minutes: 59, seconds: 59 }
+          } else if (prev.days > 0) {
+            return { ...prev, days: prev.days - 1, hours: 23, minutes: 59, seconds: 59 }
+          } else {
+            // Reset timer or implement logic for when countdown ends
+            return { days: 1, hours: 0, minutes: 0, seconds: 0 }
+          }
+        })
+      }, 1000)
+  
+      return () => clearInterval(timer)
+    }, [])
+  
+    // Format currency with coin icon
+    const formatCurrency = (amount) => {
+      return (
+        <span className="currency-display">
+          {amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+          <span className="coin-icon">🪙</span>
+        </span>
+      )
+    }
+    
+    // Function to fetch leaderboard data from API
+    const fetchLeaderboardData = async () => {
+      try {
+        // This would be replaced with actual API call to 500 Casino
+        // const response = await fetch('https://api.500casino.com/leaderboards');
+        // const data = await response.json();
+        // Return mock data for now
+        return {
+          topPlayers: topPlayers,
+          leaderboard: leaderboardData
+        }
+      } catch (error) {
+        console.error("Error fetching leaderboard data:", error);
+        return {
+          topPlayers: topPlayers,
+          leaderboard: leaderboardData
+        }
+      }
+    }
+    
+    // Fetch data when component mounts
+    useEffect(() => {
+      const getLeaderboardData = async () => {
+        const data = await fetchLeaderboardData();
+        // Would update state with fetched data here
+        // setTopPlayers(data.topPlayers);
+        // setLeaderboardData(data.leaderboard);
+        setFilteredLeaderboard(data.leaderboard);
+      }
+      
+      getLeaderboardData();
+      
+      // Set up interval to refresh data periodically (e.g., every 5 minutes)
+      const refreshInterval = setInterval(getLeaderboardData, 300000);
+      
+      return () => clearInterval(refreshInterval);
+    }, []);
+    
+    // Handle search functionality
+    useEffect(() => {
+      if (searchTerm.trim() === '') {
+        setFilteredLeaderboard(leaderboardData);
+      } else {
+        const filtered = leaderboardData.filter(player => 
+          player.username.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setFilteredLeaderboard(filtered);
+      }
+    }, [searchTerm]);
 
   return (
     <>
@@ -102,6 +238,183 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+
+
+
+      {/* Leaderboard-seksjon */}
+     <div className="leaderboard-container">
+       <h2 className="leaderboard-title">LEADERBOARD</h2>
+          <div className="leaderboard-subtitle">WAGER WITH CODE FNCY AND WIN PRIZES</div>
+      {/* Top three players section */}
+      <div className="top-players">
+        {/* Second place */}
+        <div className="top-player-card second">
+          <div className="player-avatar-container">
+            <img src={topPlayers[1].avatar} alt="Player avatar" className="player-avatar" />
+            <div className="rank-badge">#2</div>
+          </div>
+          <div className="player-name">{topPlayers[1].username}</div>
+          
+          <div className="stats-label">Total Wagered</div>
+          <div className="stats-value">
+            {topPlayers[1].totalWagered.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+            <img src="/coin.svg" alt="Coin" className="coin-icon" />
+          </div>
+          
+          <div className="divider"></div>
+          
+          <div className="reward-section">
+            <span className="trophy-icon">🏆</span>
+            <div className="stats-label">Reward</div>
+            <div className="stats-value">
+              {topPlayers[1].reward.toLocaleString('en-US')}
+              <img src="/coin.svg" alt="Coin" className="coin-icon" />
+            </div>
+          </div>
+        </div>
+        
+        {/* First place */}
+        <div className="top-player-card first">
+          <div className="crown">
+            <span className="crown-emoji" role="img" aria-label="Crown">👑</span>
+          </div>
+          <div className="player-avatar-container">
+            <img src={topPlayers[0].avatar} alt="Player avatar" className="player-avatar" />
+            <div className="rank-badge">#1</div>
+          </div>
+          <div className="player-name">{topPlayers[0].username}</div>
+          
+          <div className="stats-label">Total Wagered</div>
+          <div className="stats-value">
+            {topPlayers[0].totalWagered.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+            <img src="/coin.svg" alt="Coin" className="coin-icon" />
+          </div>
+          
+          <div className="divider"></div>
+          
+          <div className="reward-section">
+            <span className="trophy-icon">🏆</span>
+            <div className="stats-label">Reward</div>
+            <div className="stats-value">
+              {topPlayers[0].reward.toLocaleString('en-US')}
+              <img src="/coin.svg" alt="Coin" className="coin-icon" />
+            </div>
+          </div>
+        </div>
+        
+        {/* Third place */}
+        <div className="top-player-card third">
+          <div className="player-avatar-container">
+            <img src={topPlayers[2].avatar} alt="Player avatar" className="player-avatar" />
+            <div className="rank-badge">#3</div>
+          </div>
+          <div className="player-name">{topPlayers[2].username}</div>
+          
+          <div className="stats-label">Total Wagered</div>
+          <div className="stats-value">
+            {topPlayers[2].totalWagered.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+            <img src="/coin.svg" alt="Coin" className="coin-icon" />
+          </div>
+          
+          <div className="divider"></div>
+          
+          <div className="reward-section">
+            <span className="trophy-icon">🏆</span>
+            <div className="stats-label">Reward</div>
+            <div className="stats-value">
+              {topPlayers[2].reward.toLocaleString('en-US')}
+              <img src="/coin.svg" alt="Coin" className="coin-icon" />
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Timer section */}
+      <div className="timer-container">
+        <div className="timer-unit">
+          <div className="timer-value">{timeLeft.days}</div>
+          <div className="timer-label">DAY</div>
+        </div>
+        <div className="timer-unit">
+          <div className="timer-value">{timeLeft.hours}</div>
+          <div className="timer-label">HR</div>
+        </div>
+        <div className="timer-unit">
+          <div className="timer-value">{timeLeft.minutes}</div>
+          <div className="timer-label">MIN</div>
+        </div>
+        <div className="timer-unit">
+          <div className="timer-value">{timeLeft.seconds}</div>
+          <div className="timer-label">SEC</div>
+        </div>
+      </div>
+      
+      {/* Search and leaderboard section */}
+      <div className="search-container">
+        <input 
+          type="text" 
+          className="search-box" 
+          placeholder="Search by username..." 
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        
+        <table className="leaderboard-table">
+          <thead>
+            <tr>
+              <th>USER</th>
+              <th></th>
+              <th className="header-right">WAGERED</th>
+              <th className="header-right">PRIZE</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredLeaderboard.length > 0 ? (
+              filteredLeaderboard.map(player => (
+                <tr key={player.rank}>
+                  <td className="rank-cell">
+                    <div className="rank-display">
+                      <img src="/coin.svg" alt="Coin icon" className="trophy-small" />
+                      <span>{player.rank}</span>
+                    </div>
+                  </td>
+                  <td className="user-cell">
+                    <div className="player-cell">
+                      <img src={player.avatar} alt={`${player.username}'s avatar`} className="player-avatar" />
+                      <span className="username">{player.username}</span>
+                    </div>
+                  </td>
+                  <td className="value-cell">
+                    <span className="wagered-amount">
+                      ${player.wagered.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+                    </span>
+                  </td>
+                  <td className="value-cell">
+                    <span className="prize-amount">
+                      ${player.prize.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+                    </span>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="4" className="no-results">
+                  No players found matching your search.
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>         
+
+
+
+
+
+
+
+
 
       {/* Bonuses 1 Innholdsseksjon */}
       <section className="bonuses-section">
