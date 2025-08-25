@@ -28,7 +28,7 @@ const Navbar = () => {
         </NavLink>
         <NavLink to="/leaderboards" className="navbar-item">
           <FaChartBar className="navbar-icon" />
-          Leaderboards
+          Leaderboard
         </NavLink>
       </div>
       <button

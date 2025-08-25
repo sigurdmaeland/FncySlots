@@ -272,7 +272,7 @@ const Leaderboards = () => {
                 <tr key={player.rank}>
                   <td className="rank-cell">
                     <div className="rank-display">
-                      <img src="/coin.svg" alt="Coin icon" className="trophy-small" />
+                      <span className="trophy-small" role="img" aria-label="Trophy">🏆</span>
                       <span>{player.rank}</span>
                     </div>
                   </td>

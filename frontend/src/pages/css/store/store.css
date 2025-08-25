@@ -21,17 +21,18 @@
   font-family: 'Oswald', 'Montserrat', 'Poppins', Arial, sans-serif;
   font-size: 4.2rem;
   font-weight: 900;
-  color: #e63926;
+  color: #f11313;
   letter-spacing: 2px;
   margin-bottom: 10px;
   text-align: center;
   text-transform: uppercase;
-  text-shadow: 0 2px 18px #18181b, 0 0 2px #e63926;
+  text-shadow: 0 2px 18px #18181b, 0 0 2px #ff2200;
 }
 
 .store-subtitle {
-  color: #ff432e;
-  font-size: 0.9rem;
+ color: #b12f2f;
+  font-size: 1.0rem;
+  font-weight: 900;
   margin-bottom: 32px;
   text-align: center;
   letter-spacing: 1px;

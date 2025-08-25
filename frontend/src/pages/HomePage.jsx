@@ -202,7 +202,7 @@ const HomePage = () => {
             <button
               className="scroll-down-circle"
               onClick={() => {
-                const nextSection = document.querySelector('.bonuses-section')
+                const nextSection = document.querySelector('.leaderboards-section')
                 if (nextSection) {
                   const targetY = nextSection.getBoundingClientRect().top + window.scrollY
                   const startY = window.scrollY
@@ -242,6 +242,7 @@ const HomePage = () => {
 
 
       {/* Leaderboard-seksjon */}
+      <section className="leaderboards-section">
      <div className="leaderboard-container">
        <h2 className="leaderboard-title">LEADERBOARD</h2>
           <div className="leaderboard-subtitle">WAGER WITH CODE FNCY AND WIN PRIZES</div>
@@ -408,6 +409,7 @@ const HomePage = () => {
       </div>
     </div>         
 
+      </section>
 
 
 

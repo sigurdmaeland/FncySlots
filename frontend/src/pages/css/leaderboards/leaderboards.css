@@ -11,6 +11,12 @@
   --card-bg: rgba(62, 41, 41, 0.8);
   --glow-shadow: 0 0 15px rgba(230,57,70,0.35);
   --card-border: 1px solid rgba(230,57,70,0.2);
+  /* Responsive helpers */
+  --title-size: clamp(2.2rem, 6.5vw, 4.2rem);
+  --subtitle-size: clamp(0.9rem, 1.6vw, 1rem);
+  --card-width: clamp(180px, 22vw, 280px);
+  --container-padding: clamp(12px, 3.5vw, 20px);
+  --topplayers-gap: clamp(12px, 2.2vw, 20px);
 }
 
 @keyframes float {
@@ -32,12 +38,12 @@
   min-height: 100vh;
   color: var(--text-primary);
   font-family: 'Montserrat', 'Poppins', Arial, sans-serif;
-  padding: 20px;
+  padding: var(--container-padding);
 }
 
 .leaderboard-title {
   font-family: 'Oswald', 'Montserrat', 'Poppins', Arial, sans-serif;
-  font-size: 4.2rem;
+  font-size: var(--title-size);
   font-weight: 900;
   color: #f11313;
   letter-spacing: 2px;
@@ -45,12 +51,12 @@
   text-align: center;
   text-transform: uppercase;
   text-shadow: 0 2px 18px #18181b, 0 0 2px #ff2200;
-  margin-top: 70px;
+  margin-top: clamp(40px, 12vw, 110px);
 }
 
 .leaderboard-subtitle {
   color: #b12f2f;
-  font-size: 1.0rem;
+  font-size: var(--subtitle-size);
   font-weight: 900;
   margin-bottom: 32px;
   text-align: center;
@@ -63,7 +69,7 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  gap: 20px;
+  gap: var(--topplayers-gap);
   margin-bottom: 50px;
   padding: 20px;
   position: relative;
@@ -76,7 +82,7 @@
   background-color: var(--card-bg);
   border-radius: 15px;
   padding: 20px;
-  width: 240px;
+  width: var(--card-width);
   position: relative;
   border: var(--card-border);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
@@ -84,11 +90,7 @@
   transition: all 0.3s ease;
 }
 
-.top-player-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-}
-
+/* Consolidated first/second/third styling to avoid duplicates and ensure consistent responsiveness */
 .top-player-card.first {
   z-index: 3;
   padding-bottom: 30px;
@@ -144,8 +146,8 @@
 }
 
 .player-avatar {
-  width: 100px;
-  height: 100px;
+  width: clamp(64px, 16vw, 100px);
+  height: clamp(64px, 16vw, 100px);
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid var(--accent-color);
@@ -279,7 +281,8 @@
 .search-container {
   max-width: 1200px;
   margin: 0 auto;
-  background: url('/123.png') center top / cover no-repeat;
+  /* use a subtle gradient overlay for readability on all devices */
+  background: linear-gradient(180deg, rgba(10,5,8,0.55), rgba(10,5,8,0.25));
   padding: 10px;
   border-radius: 8px;
   display: flex;
@@ -287,6 +290,7 @@
   align-items: stretch; /* ensure children fill container width */
   box-sizing: border-box;
   margin-bottom: 100px;
+  backdrop-filter: blur(4px);
 }
 
 .search-box {
@@ -381,7 +385,7 @@
 }
 
 .leaderboard-table td:first-child {
-  width: 80px;
+  width: 12px;
   padding-left: 20px;
 }
 
@@ -414,6 +418,7 @@
   object-fit: cover;
   border: 2px solid var(--accent-color);
   box-shadow: 0 0 8px rgba(230,57,70,0.3);
+  margin-top: 12px;
 }
 
 .rank-display {
@@ -465,6 +470,7 @@
   padding-right: 30px;
 }
 
+
 /* Responsive design */
 @media (max-width: 900px) {
   .top-players {
@@ -475,7 +481,7 @@
   
   .top-player-card {
     width: 90%;
-    max-width: 280px;
+    max-width: 320px;
     margin-top: 0 !important;
   }
   
@@ -487,20 +493,13 @@
   .top-player-card.first,
   .top-player-card.second,
   .top-player-card.third {
-    margin-top: 40px;
-  }
-  
-  .top-player-card.first,
-  .top-player-card.second,
-  .top-player-card.third {
-    margin-top: 40px;
+    margin-top: 24px;
   }
   
   .crown {
     top: -25px;
     font-size: 30px;
   }
-  
   
   .search-box {
     padding: 12px 15px;
@@ -552,107 +551,134 @@
 }
 
 @media (max-width: 600px) {
-  /* Mobile: hide table header and present each row as a compact card */
-  .leaderboard-table thead {
-    display: none;
+  /* Container adjustments */
+  .leaderboard-container {
+    padding: 12px;
   }
 
-  .leaderboard-table {
-    border-spacing: 0;
+  .leaderboard-title {
+    font-size: clamp(1.4rem, 8vw, 2.0rem);
+    margin-top: 28px;
   }
 
-  .leaderboard-table tbody {
-    display: block;
+  .leaderboard-subtitle {
+    font-size: 0.8rem;
+    margin-bottom: 12px;
   }
+
+  /* Top players: stacked, compact, consistent padding */
+  .top-players {
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 18px;
+    align-items: stretch;
+  }
+
+  .top-player-card {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .top-player-card .player-avatar-container {
+    margin-bottom: 0;
+    flex: 0 0 auto;
+  }
+
+  .player-avatar {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 0;
+  }
+
+  .top-player-card .player-name,
+  .top-player-card .stats-label,
+  .top-player-card .stats-value {
+    text-align: left;
+  }
+
+  .top-player-card .stats-value {
+    font-size: 18px;
+  }
+
+  .crown { display: none; }
+
+  /* Search container: simplified for contrast */
+  .search-container {
+    background: linear-gradient(rgba(6,3,6,0.82), rgba(6,3,6,0.6));
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .search-box { padding: 10px 12px; font-size: 14px; }
+
+  /* Table -> card list behavior */
+  .leaderboard-table thead { display: none; }
+  .leaderboard-table { border-spacing: 0; }
+  .leaderboard-table tbody { display: block; }
 
   .leaderboard-table tbody tr {
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
     background-color: var(--card-bg);
-    margin-bottom: 12px;
-    padding: 10px 14px;
+    margin-bottom: 10px;
+    padding: 10px 12px;
     border-radius: 10px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.35);
     height: auto;
   }
 
   .leaderboard-table td {
-    display: inline-flex;
-    align-items: center;
-    vertical-align: middle;
+    display: block;
     padding: 0;
     border: none;
+    vertical-align: middle;
   }
 
+  /* Rank column */
   .rank-cell {
-    min-width: 48px;
+    flex: 0 0 56px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
     padding-right: 8px;
   }
 
-  .user-cell {
-    flex: 1 1 auto;
+  .rank-display { justify-content: center; gap: 6px; }
+  .trophy-small { font-size: 18px; margin-right: 4px; }
+
+  /* User column */
+  .user-cell { flex: 1 1 auto; display: flex; align-items: center; gap: 10px; padding-left: 6px; }
+  .leaderboard-table .player-avatar { width: 40px; height: 40px; margin-top: 0; }
+  .username { font-size: 14px; font-weight: 700; }
+
+  /* Values column */
+  .value-cell { flex: 0 0 110px; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+  .wagered-amount, .prize-amount { font-size: 14px; font-weight: 700; }
+
+  /* No-results row should take full width and be centered */
+  .leaderboard-table td.no-results {
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 10px;
-    padding-left: 6px;
-  }
-
-  .player-avatar {
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    box-shadow: none;
-    border-width: 2px;
-  }
-
-  .username {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text-primary);
-  }
-
-  .value-cell {
-    min-width: 86px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 4px;
-    padding-left: 12px;
-  }
-
-  .wagered-amount, .prize-amount {
-    font-size: 14px;
-    font-weight: 700;
-  }
-
-  /* hide large decorative crown on top player cards to save space */
-  .crown {
-    display: none;
-  }
-
-  /* reduce other paddings / font sizes */
-  .leaderboard-container {
-    padding: 12px;
-  }
-
-  .search-box {
-    padding: 10px 12px;
-    font-size: 14px;
-  }
-
-  .timer-value {
-    font-size: 18px;
-    width: 36px;
-    padding: 6px 8px;
-  }
-
-  .top-player-card {
     width: 100%;
-    max-width: none;
-    padding: 12px;
+    padding: 18px 8px;
+    font-size: 15px;
   }
+
+  /* Minor tweaks to badges and small visuals */
+  .rank-badge { width: 26px; height: 26px; font-size: 12px; }
+  .player-cell { gap: 10px; }
+}
+
+/* small tweak for very large screens to keep content centered */
+@media (min-width: 1600px) {
+  .leaderboard-container { padding-left: 60px; padding-right: 60px; }
+  .top-player-card { width: 300px; }
 }
