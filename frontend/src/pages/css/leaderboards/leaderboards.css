@@ -551,118 +551,262 @@
 }
 
 @media (max-width: 600px) {
-  /* Container adjustments */
-  .leaderboard-container {
-    padding: 12px;
-  }
-
   .leaderboard-title {
-    font-size: clamp(1.4rem, 8vw, 2.0rem);
+    font-size: clamp(1.6rem, 8vw, 2.6rem);
     margin-top: 28px;
   }
 
-  .leaderboard-subtitle {
-    font-size: 0.8rem;
-    margin-bottom: 12px;
+  /* Mobile: hide table header and present each row as a compact card */
+  .leaderboard-table thead {
+    display: none;
   }
 
-  /* Top players: stacked, compact, consistent padding */
-  .top-players {
-    flex-direction: column;
-    gap: 14px;
-    margin-top: 18px;
-    align-items: stretch;
+  .leaderboard-table {
+    border-spacing: 0;
   }
 
-  .top-player-card {
-    width: 100%;
-    padding: 12px;
-    border-radius: 12px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 12px;
+  .leaderboard-table tbody {
+    display: block;
   }
-
-  .top-player-card .player-avatar-container {
-    margin-bottom: 0;
-    flex: 0 0 auto;
-  }
-
-  .player-avatar {
-    width: 56px;
-    height: 56px;
-    margin-bottom: 0;
-  }
-
-  .top-player-card .player-name,
-  .top-player-card .stats-label,
-  .top-player-card .stats-value {
-    text-align: left;
-  }
-
-  .top-player-card .stats-value {
-    font-size: 18px;
-  }
-
-  .crown { display: none; }
-
-  /* Search container: simplified for contrast */
-  .search-container {
-    background: linear-gradient(rgba(6,3,6,0.82), rgba(6,3,6,0.6));
-    padding: 10px;
-    border-radius: 10px;
-  }
-
-  .search-box { padding: 10px 12px; font-size: 14px; }
-
-  /* Table -> card list behavior */
-  .leaderboard-table thead { display: none; }
-  .leaderboard-table { border-spacing: 0; }
-  .leaderboard-table tbody { display: block; }
 
   .leaderboard-table tbody tr {
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: space-between;
     background-color: var(--card-bg);
-    margin-bottom: 10px;
-    padding: 10px 12px;
+    margin-bottom: 12px;
+    padding: 10px 14px;
     border-radius: 10px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.35);
     height: auto;
   }
 
   .leaderboard-table td {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
     padding: 0;
     border: none;
-    vertical-align: middle;
   }
 
-  /* Rank column */
   .rank-cell {
-    flex: 0 0 56px;
+    min-width: 48px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 8px;
     padding-right: 8px;
   }
 
-  .rank-display { justify-content: center; gap: 6px; }
-  .trophy-small { font-size: 18px; margin-right: 4px; }
+  .user-cell {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 6px;
+  }
 
-  /* User column */
-  .user-cell { flex: 1 1 auto; display: flex; align-items: center; gap: 10px; padding-left: 6px; }
-  .leaderboard-table .player-avatar { width: 40px; height: 40px; margin-top: 0; }
-  .username { font-size: 14px; font-weight: 700; }
+  .player-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    box-shadow: none;
+    border-width: 2px;
+  }
 
-  /* Values column */
-  .value-cell { flex: 0 0 110px; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
-  .wagered-amount, .prize-amount { font-size: 14px; font-weight: 700; }
+  .username {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
 
-  /* No-results row should take full width and be centered */
+  .value-cell {
+    min-width: 86px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+    padding-left: 12px;
+  }
+
+  .wagered-amount, .prize-amount {
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  /* hide large decorative crown on top player cards to save space */
+  .crown {
+    display: none;
+  }
+
+  /* reduce other paddings / font sizes */
+  .leaderboard-container {
+    padding: 12px;
+  }
+
+  .search-box {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  .timer-value {
+    font-size: 18px;
+    width: 36px;
+    padding: 6px 8px;
+  }
+
+  .top-player-card {
+    width: 100%;
+    max-width: none;
+    padding: 12px;
+  }
+}
+
+/* Final responsive refinements for tablet/mobile to ensure consistent layout and readability */
+@media (max-width: 900px) {
+  .leaderboard-container {
+    padding: 18px;
+  }
+
+  .leaderboard-title {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    margin-top: 60px;
+  }
+
+  .leaderboard-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+  }
+
+  /* stack top players vertically and make cards full width */
+  .top-players {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 40px;
+  }
+
+  .top-player-card {
+    width: 92%;
+    max-width: 420px;
+    padding: 16px;
+  }
+
+  .player-avatar {
+    width: 84px;
+    height: 84px;
+  }
+
+  /* So the decorative first card still stands out but is readable */
+  .top-player-card.first {
+    margin-top: 0 !important;
+    transform: none;
+  }
+
+  /* Search container: add translucent overlay for readability on smaller screens */
+  .search-container {
+    background: linear-gradient(rgba(6,3,6,0.6), rgba(6,3,6,0.45));
+    padding: 12px;
+    border-radius: 10px;
+  }
+
+  .search-box {
+    padding: 12px 14px;
+  }
+
+  .timer-value {
+    font-size: 20px;
+    width: 40px;
+    padding: 8px 10px;
+  }
+
+  /* Table adjustments for medium screens */
+  .leaderboard-table td {
+    font-size: 15px;
+    padding: 10px 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .leaderboard-container {
+    padding: 12px;
+  }
+
+  .leaderboard-title {
+    font-size: clamp(1.4rem, 8vw, 2.2rem);
+    margin-top: 36px;
+  }
+
+  .leaderboard-subtitle {
+    font-size: 0.85rem;
+    margin-bottom: 14px;
+  }
+
+  /* ensure top players are simple, stacked and readable on small phones */
+  .top-players {
+    gap: 18px;
+    margin-top: 20px;
+  }
+
+  .top-player-card {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+  .player-avatar {
+    width: 64px;
+    height: 64px;
+  }
+
+  /* mobile: hide crown decoration to save space (already present) but ensure spacing */
+  .crown { display: none; }
+
+  /* Search container: remove decorative image to improve contrast */
+  .search-container {
+    background: linear-gradient(rgba(6,3,6,0.75), rgba(6,3,6,0.6));
+    padding: 10px;
+  }
+
+  /* Convert table rows to compact cards already handled; tweak spacing */
+  .leaderboard-table tbody tr {
+    flex-direction: row;
+    padding: 10px 12px;
+  }
+
+  .leaderboard-table td.rank-cell,
+  .leaderboard-table td.user-cell,
+  .leaderboard-table td.value-cell {
+    padding: 6px 8px;
+  }
+
+  
+
+
+  .leaderboard-table .player-avatar {
+    width: 36px;
+    height: 36px;
+  }
+
+  .username { font-size: 14px; }
+
+  .wagered-amount, .prize-amount { font-size: 13px; }
+
+  /* Center "no results" message and make it more visible on mobile */
+  .leaderboard-table td.no-results {
+    padding: 18px 8px;
+    font-size: 15px;
+  }
+}
+
+/* Ensure the "no results" message is centered on desktop/tablet */
+.leaderboard-table td.no-results {
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  /* Center "no results" message inside the mobile flex row */
   .leaderboard-table td.no-results {
     display: flex;
     justify-content: center;
@@ -671,10 +815,6 @@
     padding: 18px 8px;
     font-size: 15px;
   }
-
-  /* Minor tweaks to badges and small visuals */
-  .rank-badge { width: 26px; height: 26px; font-size: 12px; }
-  .player-cell { gap: 10px; }
 }
 
 /* small tweak for very large screens to keep content centered */
