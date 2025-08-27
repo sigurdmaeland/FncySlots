@@ -850,31 +850,45 @@
   
 }
 
-/* Make table rows more compact */
-@media (max-width: 360px) {
+/* Make rows tighter and remove heavy shadows */
+@media (max-width: 420px) {
   .leaderboard-table tbody tr {
+    margin-bottom: 6px;
     padding: 6px 8px;
+    border-radius: 8px;
+    box-shadow: none;
   }
 
   .leaderboard-table td {
-    padding: 6px 6px;
+    padding: 4px 6px;
     font-size: 13px;
   }
 
-  /* Rank column: smallest reserved width and minimal gap */
-  .rank-cell { flex: 0 0 32px; padding-right: 2px; }
-  .rank-display { gap: 2px; }
-  .trophy-small { font-size: 14px; }
+  .leaderboard-table .player-avatar {
+    width: 28px;
+    height: 28px;
+  }
 
-  /* Avatar and user spacing */
-  .leaderboard-table .player-avatar { width: 30px; height: 30px; }
-  .user-cell { padding-left: 2px; gap: 6px; }
   .username { font-size: 13px; }
-
-  /* Tighten values column so WAGERED and PRIZE are closer together */
-  .value-cell { flex: 0 0 64px; gap: 2px; padding-left: 6px; align-items: flex-end; }
   .wagered-amount, .prize-amount { font-size: 12px; }
 
-  /* Ensure no-results stays centered and compact */
-  .leaderboard-table td.no-results { padding: 12px 6px; font-size: 13px; }
+  .rank-cell { flex: 0 0 30px; padding-right: 2px; }
+  .rank-display { gap: 2px; }
+  .value-cell { flex: 0 0 60px; padding-left: 6px; gap: 2px; }
+
+  .leaderboard-table td.no-results { padding: 10px 6px; font-size: 13px; }
 }
+
+/* Keep extra-small overrides as a fallback for very narrow devices */
+@media (max-width: 360px) {
+  .leaderboard-table tbody tr { margin-bottom: 4px; padding: 5px 6px; border-radius: 6px; }
+  .leaderboard-table td { padding: 3px 4px; font-size: 12px; }
+  .leaderboard-table .player-avatar { width: 26px; height: 26px; }
+  .username { font-size: 12px; }
+  .wagered-amount, .prize-amount { font-size: 11px; }
+  .rank-cell { flex: 0 0 28px; }
+  .value-cell { flex: 0 0 56px; }
+  .leaderboard-table td.no-results { padding: 8px 4px; font-size: 12px; }
+}
+
+
