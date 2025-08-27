@@ -849,3 +849,32 @@
   }
   
 }
+
+/* Make table rows more compact */
+@media (max-width: 360px) {
+  .leaderboard-table tbody tr {
+    padding: 6px 8px;
+  }
+
+  .leaderboard-table td {
+    padding: 6px 6px;
+    font-size: 13px;
+  }
+
+  /* Rank column: smallest reserved width and minimal gap */
+  .rank-cell { flex: 0 0 32px; padding-right: 2px; }
+  .rank-display { gap: 2px; }
+  .trophy-small { font-size: 14px; }
+
+  /* Avatar and user spacing */
+  .leaderboard-table .player-avatar { width: 30px; height: 30px; }
+  .user-cell { padding-left: 2px; gap: 6px; }
+  .username { font-size: 13px; }
+
+  /* Tighten values column so WAGERED and PRIZE are closer together */
+  .value-cell { flex: 0 0 64px; gap: 2px; padding-left: 6px; align-items: flex-end; }
+  .wagered-amount, .prize-amount { font-size: 12px; }
+
+  /* Ensure no-results stays centered and compact */
+  .leaderboard-table td.no-results { padding: 12px 6px; font-size: 13px; }
+}
